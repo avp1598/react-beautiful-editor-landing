@@ -2,6 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue}"],
+  blocklist: ["h1", "h2", "list-item"],
   theme: {
     extend: {
       fontFamily: {

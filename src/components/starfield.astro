@@ -5,8 +5,8 @@
 <script>
   import invariant from "tiny-invariant";
 
-  const COUNT = 800;
-  const SPEED = 0.1;
+  const COUNT = 250;
+  const SPEED = 0.2;
 
   class Star {
     x: number;
@@ -86,7 +86,7 @@
 
     ctx.translate(width / 2, height / 2);
     ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
-    ctx.strokeStyle = "white";
+    ctx.strokeStyle = "#d946ef";
     rafId = requestAnimationFrame(frame);
   }
 

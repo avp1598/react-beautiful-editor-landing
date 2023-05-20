@@ -1,40 +1,139 @@
-# Astro Landing Page
+# React Beautiful Editor
 
-[![Built with Astro](https://astro.badg.es/v1/built-with-astro.svg)](https://astro.build)
+A React component that allows you to create a beautiful rich text editor with resizable embeds, images, links, and more.
 
-> An Astro + Tailwind CSS example/template for landing pages.
+It is built on top of ![tiptap](https://tiptap.dev/) and it is an all batteries included editor.
 
-![Screenshots of Astro Landing Page](screenshots.jpg)
+![twitter](https://img.shields.io/twitter/follow/0xavp?style=social)
+![size](https://img.shields.io/bundlephobia/min/@avp1598/react-beautiful-editor)
+![npm](https://img.shields.io/npm/v/@avp1598/react-beautiful-editor)
+![downloads](https://img.shields.io/npm/dt/@avp1598/react-beautiful-editor)
 
-## Features
+![Demo](demo.gif)
 
-- 💨 Tailwind CSS for styling
-- 🎨 Themeable
-  - CSS variables are defined in `src/styles/theme.css` and mapped to Tailwind classes (`tailwind.config.cjs`)
-- 🌙 Dark mode
-- 📱 Responsive (layout, images, typography)
-- ♿ Accessible (as measured by https://web.dev/measure/)
-- 🔎 SEO-enabled (as measured by https://web.dev/measure/)
-- 🔗 Open Graph tags for social media sharing
-- 💅 [Prettier](https://prettier.io/) setup for both [Astro](https://github.com/withastro/prettier-plugin-astro) and [Tailwind](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
+## How to use
 
-## Commands
+**Install the package:**
 
-| Command                | Action                                            |
-| :--------------------- | :------------------------------------------------ |
-| `npm install`          | Install dependencies                              |
-| `npm run dev`          | Start local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`           |
-| `npm run preview`      | Preview your build locally, before deploying      |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check`  |
-| `npm run astro --help` | Get help using the Astro CLI                      |
-| `npm run format`       | Format code with [Prettier](https://prettier.io/) |
-| `npm run clean`        | Remove `node_modules` and build output            |
+`yarn add @avp1598/react-beautiful-editor`
 
-## Credits
+`pnpm install @avp1598/react-beautiful-editor`
 
-- astronaut image
-  - source: https://github.com/withastro/astro-og-image; note: this repo is not available anymore
-- moon image
-  - source: https://unsplash.com/@nasa
-- other than that, a lot of material (showcase data, copy) was taken from official Astro sources, in particular https://astro.build/blog/introducing-astro/ and https://github.com/withastro/astro.build
+`npm install @avp1598/react-beautiful-editor`
+
+**Import the editor**
+
+```tsx
+import { Editor } from "@avp1598/react-beautiful-editor";
+
+const Home = () => {
+  const [description, setDescription] = useState("");
+
+  const onSave = () => {
+    console.log("description", description);
+  };
+
+  const theme = "dark";
+
+  return (
+    <div
+      // set text color based on the theme
+      style={{
+        color: theme === "dark" ? "white" : "black",
+      }}
+    >
+      <Editor
+        value={description}
+        onChange={(value) => {
+          setDescription(value);
+        }}
+        theme={theme}
+        uploadImage={async (file) => {
+          console.log("file", file);
+          return "https://picsum.photos/400/600";
+        }}
+        placeholder="Enter description"
+        embedBoundsSelector=".bounds"
+        onBlur={onSave}
+        readonly={false}
+      />
+    </div>
+  );
+};
+```
+
+## API (Available props)
+
+You can pass the following props to the `Editor` component.
+
+### `value` (string)
+
+The string value of the editor.
+
+<hr />
+
+### `onChange` (function)
+
+A function that will be called whenever the value of the editor changes, with the new value as the first argument.
+
+<hr />
+
+### `uploadImage` (function)
+
+A function that will be called whenever the user uploads an image, with the image file as the first argument. This function should return a promise that resolves to the URL of the uploaded image.
+
+<hr />
+
+### `placeholder?` (string)
+
+The placeholder text for the editor.
+
+default: `Start typing and enter / for commands`
+
+<hr />
+
+### `theme?` (string)
+
+The theme of the editor.
+
+default: `light`
+
+<hr />
+
+### `embedBoundsSelector?` (string)
+
+The selector for the element that will be used to calculate the bounds of the embeds.
+
+default: `window`
+
+<hr />
+
+### `readonly?` (boolean)
+
+Whether the editor is readonly or not.
+
+default: `false`
+
+<hr />
+
+### `onBlur?` (function)
+
+A function that will be called whenever the editor loses focus.
+
+<hr />
+
+### `onFocus?` (function)
+
+A function that will be called whenever the editor gains focus.
+
+<hr />
+
+### `onReady?` (function)
+
+A function that will be called whenever the editor is ready to be used.
+
+<hr />
+
+---
+
+Props marked with **?** are **optional**.
