@@ -6,7 +6,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astro-moon-landing.netlify.app/",
+  site: "https://editor.avp1598.dev",
   integrations: [tailwind(), image({
     serviceEntryPoint: "@astrojs/image/sharp"
   }), react()],
