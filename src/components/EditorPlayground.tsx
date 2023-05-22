@@ -22,7 +22,7 @@ const EditorPlayground = (props: Props) => {
         console.log("file", file);
         return "https://picsum.photos/400/600";
       }}
-      placeholder="Enter the richest most beautiful text possible"
+      placeholder="Start by typing / to explore the available commands"
       onBlur={onSave}
       readonly={false}
     />
